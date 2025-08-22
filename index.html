@@ -55,9 +55,6 @@
       grid-template-columns: 1.2fr 0.8fr;
       gap: var(--spacing-md);
     }
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; }
-    }
     .card {
       background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--card);
       border: 1px solid rgba(148,163,184,.15);
@@ -66,23 +63,52 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
     .title {
-      display: flex; align-items: center; gap: var(--spacing-sm);
-      font-weight: 700; font-size: clamp(1.375rem, 2.5vw, 2.25rem);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-weight: 700;
+      font-size: clamp(1.375rem, 2.5vw, 2.25rem);
       letter-spacing: -0.02em;
       margin: 0 0 var(--spacing-sm);
     }
-    .muted { color: var(--muted); font-size: clamp(0.875rem, 1vw, 1rem); }
-    .app-meta { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin: var(--spacing-sm) 0 var(--spacing-md); }
+    .muted {
+      color: var(--muted);
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      word-wrap: break-word; /* Prevent text overflow */
+    }
+    .app-meta {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+      margin: var(--spacing-sm) 0 var(--spacing-md);
+    }
     .pill {
       border: 1px dashed rgba(148,163,184,.35);
-      padding: 0.375rem 0.625rem; border-radius: 999px; font-size: 0.8125rem; color: var(--muted);
+      padding: 0.375rem 0.625rem;
+      border-radius: 999px;
+      font-size: clamp(0.75rem, 1.5vw, 0.8125rem);
+      color: var(--muted);
     }
-    .actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: var(--spacing-sm); }
+    .actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+      margin-top: var(--spacing-sm);
+    }
     .btn {
-      appearance: none; border: 0; cursor: pointer;
-      padding: 0.75rem 1rem; border-radius: 0.75rem; font-weight: 600; font-size: 0.9375rem;
-      display: inline-flex; align-items: center; gap: 0.625rem;
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: clamp(0.875rem, 2vw, 0.9375rem);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
       transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+      min-width: 120px; /* Ensure touch-friendly size */
+      justify-content: center;
     }
     .btn:active { transform: translateY(1px); }
     .btn.primary { background: var(--primary); color: white; box-shadow: 0 10px 16px var(--ring); }
@@ -90,26 +116,86 @@
     .btn.ghost { background: transparent; border: 1px solid rgba(148,163,184,.25); color: var(--text); }
     .btn.ghost:hover { background: rgba(148,163,184,.06); }
     .btn.success { background: var(--success); color: white; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm); }
-    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-    .qr-wrap { display: flex; align-items: center; justify-content: center; background: rgba(148,163,184,.08); border: 1px dashed rgba(148,163,184,.25); border-radius: 1rem; padding: var(--spacing-sm); }
-    .qr-wrap #qrcode canvas { width: 100%; max-width: 240px; height: auto; display: block; }
-    .section-title { font-weight: 700; font-size: clamp(1.125rem, 1.5vw, 1.125rem); margin: 0 0 var(--spacing-sm); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-sm);
+    }
+    .qr-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(148,163,184,.08);
+      border: 1px dashed rgba(148,163,184,.25);
+      border-radius: 1rem;
+      padding: var(--spacing-sm);
+    }
+    .qr-wrap #qrcode canvas {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      display: block;
+    }
+    .section-title {
+      font-weight: 700;
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      margin: 0 0 var(--spacing-sm);
+    }
     .list { margin: 0; padding-left: 1.125rem; }
     .list li { margin: var(--spacing-sm) 0; }
-    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    .copy {
-      background: transparent; border: 1px solid rgba(148,163,184,.25); color: var(--text);
-      padding: 0.375rem 0.625rem; border-radius: 0.5rem; cursor: pointer; margin-left: var(--spacing-sm); font-size: 0.75rem;
+    code, .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      word-break: break-all; /* Prevent hash overflow */
     }
-    .footnote { font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
-    footer { text-align: center; color: var(--muted); font-size: 0.8125rem; padding: 1.75rem 0; }
+    .copy {
+      background: transparent;
+      border: 1px solid rgba(148,163,184,.25);
+      color: var(--text);
+      padding: 0.375rem 0.625rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      margin-left: var(--spacing-sm);
+      font-size: clamp(0.7rem, 1.5vw, 0.75rem);
+    }
+    .footnote {
+      font-size: clamp(0.7rem, 1.5vw, 0.75rem);
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: clamp(0.75rem, 1.5vw, 0.8125rem);
+      padding: 1.75rem 0;
+      margin-top: var(--spacing-lg);
+    }
     a { color: inherit; text-decoration: none; }
     #integrity-check { margin-top: var(--spacing-sm); }
     #hash-result { margin-top: var(--spacing-sm); font-weight: 500; }
     .success-msg { color: var(--success); }
     .error-msg { color: var(--danger); }
     .loading { color: var(--warning); }
+
+    /* Enhanced media queries for responsiveness */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .container { padding: 0.75rem; }
+      .btn { padding: 0.875rem 1.25rem; font-size: clamp(0.875rem, 3vw, 1rem); }
+      .qr-wrap #qrcode canvas { max-width: 180px; }
+      .card { padding: 0.75rem; border-radius: 16px; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0.5rem; margin: 1rem auto; }
+      .title { font-size: clamp(1.25rem, 5vw, 1.75rem); }
+      .section-title { font-size: clamp(0.875rem, 3vw, 1rem); }
+      .btn { padding: 0.75rem 1rem; min-width: 100%; }
+      .actions { flex-direction: column; }
+      .qr-wrap #qrcode canvas { max-width: 140px; }
+      .pill { font-size: clamp(0.7rem, 2vw, 0.75rem); padding: 0.25rem 0.5rem; }
+      .footnote, footer { font-size: clamp(0.65rem, 2vw, 0.7rem); }
+      .copy { font-size: clamp(0.65rem, 2vw, 0.7rem); }
+    }
   </style>
 </head>
 <body>
@@ -148,7 +234,6 @@
           <i class="fas fa-download"></i> Télécharger l’APK
         </a>
         <a class="btn ghost" id="mirrorBtn" href="https://nitheoneste.github.io/WalletWiseAPK/WalletWise.apk" target="_blank" rel="noopener"><i class="fas fa-sync"></i> Miroir</a>
-        <!--<button class="btn ghost" id="howBtn" type="button"><i class="fas fa-mobile-alt"></i> Comment installer ?</button>-->
       </div>
 
       <div class="footnote">Astuce : scannez le QR code à droite pour télécharger directement sur votre téléphone.</div>
@@ -178,7 +263,6 @@
     </footer>
   </div>
 
-  <!-- Librairie QRCode.js et SHA-256 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
@@ -190,13 +274,11 @@
     document.getElementById('apkDate').textContent = META.date;
     document.getElementById('checksumValue').textContent = META.checksum;
 
-    // Fonction pour formater la taille en MB
     function formatFileSize(bytes) {
       const sizeInMB = (bytes / (1024 * 1024)).toFixed(1);
       return `${sizeInMB} MB`;
     }
 
-    // Récupérer dynamiquement la taille du fichier
     async function fetchFileSize() {
       try {
         const response = await fetch(APK_URL, { method: 'HEAD' });
@@ -206,7 +288,6 @@
           const size = parseInt(contentLength, 10);
           document.getElementById('apkSize').textContent = formatFileSize(size);
         } else {
-          // Fallback : télécharger le fichier pour calculer la taille
           const fullResponse = await fetch(APK_URL);
           const arrayBuffer = await fullResponse.arrayBuffer();
           document.getElementById('apkSize').textContent = formatFileSize(arrayBuffer.byteLength);
@@ -217,21 +298,19 @@
       }
     }
 
-    // Appeler la fonction au chargement de la page
     fetchFileSize();
 
     document.getElementById('copyChecksum').addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText(META.checksum); alert('SHA-256 copié !'); } 
-      catch(e){ alert('Impossible de copier automatiquement.'); }
-    });
-
-    document.getElementById('howBtn').addEventListener('click', () => {
-      alert('1) Téléchargez WalletWise.apk\n2) Ouvrez le fichier\n3) Autorisez les sources inconnues si demandé\n4) Terminez l’installation');
+      try {
+        await navigator.clipboard.writeText(META.checksum);
+        alert('SHA-256 copié !');
+      } catch(e) {
+        alert('Impossible de copier automatiquement.');
+      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Automatic integrity check
     const verifyBtn = document.getElementById('verify-btn');
     const hashResult = document.getElementById('hash-result');
 
