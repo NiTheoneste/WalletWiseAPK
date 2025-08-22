@@ -2,12 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Télécharger l’APK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Télécharger l’apk de WalletWise</title>
   <meta name="description" content="Page officielle de téléchargement de l’APK." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📦</text></svg>">
   <style>
     :root {
@@ -21,6 +22,9 @@
       --success: #16a34a;
       --warning: #f59e0b;
       --danger: #ef4444;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
     }
     @media (prefers-color-scheme: light) {
       :root {
@@ -32,9 +36,8 @@
       }
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { height: 100%; margin: 0; }
     body {
-      margin: 0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       background: radial-gradient(1200px 800px at 20% -10%, rgba(79,70,229,.15), transparent 50%),
                   radial-gradient(900px 600px at 120% 10%, rgba(14,165,233,.12), transparent 50%),
@@ -44,109 +47,115 @@
     }
     .container {
       max-width: 980px;
-      margin: 40px auto;
-      padding: 24px;
+      margin: var(--spacing-lg) auto;
+      padding: var(--spacing-md);
     }
     .hero {
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 24px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--spacing-md);
     }
-    @media (max-width: 860px){
+    @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; }
     }
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)) , var(--card);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--card);
       border: 1px solid rgba(148,163,184,.15);
       border-radius: 20px;
-      padding: 24px;
+      padding: var(--spacing-md);
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
     .title {
-      display: flex; align-items: center; gap: 12px;
-      font-weight: 700; font-size: clamp(22px, 2.5vw, 36px);
+      display: flex; align-items: center; gap: var(--spacing-sm);
+      font-weight: 700; font-size: clamp(1.375rem, 2.5vw, 2.25rem);
       letter-spacing: -0.02em;
-      margin: 0 0 8px;
+      margin: 0 0 var(--spacing-sm);
     }
-    .muted { color: var(--muted); font-size: 14px; }
-    .app-meta { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0 22px; }
+    .muted { color: var(--muted); font-size: clamp(0.875rem, 1vw, 1rem); }
+    .app-meta { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin: var(--spacing-sm) 0 var(--spacing-md); }
     .pill {
       border: 1px dashed rgba(148,163,184,.35);
-      padding: 6px 10px; border-radius: 999px; font-size: 13px; color: var(--muted);
+      padding: 0.375rem 0.625rem; border-radius: 999px; font-size: 0.8125rem; color: var(--muted);
     }
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    .actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: var(--spacing-sm); }
     .btn {
       appearance: none; border: 0; cursor: pointer;
-      padding: 12px 16px; border-radius: 12px; font-weight: 600; font-size: 15px;
-      display: inline-flex; align-items: center; gap: 10px;
+      padding: 0.75rem 1rem; border-radius: 0.75rem; font-weight: 600; font-size: 0.9375rem;
+      display: inline-flex; align-items: center; gap: 0.625rem;
       transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
     }
-    .btn:active { transform: translateY(1px) }
+    .btn:active { transform: translateY(1px); }
     .btn.primary { background: var(--primary); color: white; box-shadow: 0 10px 16px var(--ring); }
     .btn.primary:hover { background: var(--primary-600); }
     .btn.ghost { background: transparent; border: 1px solid rgba(148,163,184,.25); color: var(--text); }
     .btn.ghost:hover { background: rgba(148,163,184,.06); }
     .btn.success { background: var(--success); color: white; }
-
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 860px){ .grid { grid-template-columns: 1fr; } }
-
-    .qr-wrap { display:flex; align-items:center; justify-content:center; background: rgba(148,163,184,.08); border:1px dashed rgba(148,163,184,.25); border-radius:16px; }
-    .qr-wrap img { width: 100%; max-width: 240px; height: auto; display:block; }
-
-    .section-title { font-weight: 700; font-size: 18px; margin: 0 0 10px; }
-    .list { margin: 0; padding-left: 18px; }
-    .list li { margin: 6px 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm); }
+    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    .qr-wrap { display: flex; align-items: center; justify-content: center; background: rgba(148,163,184,.08); border: 1px dashed rgba(148,163,184,.25); border-radius: 1rem; padding: var(--spacing-sm); }
+    .qr-wrap #qrcode canvas { width: 100%; max-width: 240px; height: auto; display: block; }
+    .section-title { font-weight: 700; font-size: clamp(1.125rem, 1.5vw, 1.125rem); margin: 0 0 var(--spacing-sm); }
+    .list { margin: 0; padding-left: 1.125rem; }
+    .list li { margin: var(--spacing-sm) 0; }
     code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     .copy {
-      background: transparent; border:1px solid rgba(148,163,184,.25); color: var(--text);
-      padding: 6px 10px; border-radius: 8px; cursor: pointer; margin-left: 6px; font-size: 12px;
+      background: transparent; border: 1px solid rgba(148,163,184,.25); color: var(--text);
+      padding: 0.375rem 0.625rem; border-radius: 0.5rem; cursor: pointer; margin-left: var(--spacing-sm); font-size: 0.75rem;
     }
-    .footnote { font-size: 12px; color: var(--muted); margin-top: 16px; }
-    footer { text-align:center; color: var(--muted); font-size: 13px; padding: 28px 0; }
+    .footnote { font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
+    footer { text-align: center; color: var(--muted); font-size: 0.8125rem; padding: 1.75rem 0; }
     a { color: inherit; text-decoration: none; }
+    #integrity-check { margin-top: var(--spacing-sm); }
+    #hash-result { margin-top: var(--spacing-sm); font-weight: 500; }
+    .success-msg { color: var(--success); }
+    .error-msg { color: var(--danger); }
+    .loading { color: var(--warning); }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="hero">
       <section class="card">
-        <h1 class="title">📦 Télécharger WalletWise</h1>
-        <p class="muted">Installez la dernière version de l’application Android en toute sécurité depuis cette page.</p>
-
-        <div class="app-meta">
-          <span class="pill" id="version-pill">Version <strong class="mono" id="apkVersion">1.0.0</strong></span>
-          <span class="pill">Taille : <span class="mono" id="apkSize">24.6 MB</span></span>
-          <span class="pill">Mise à jour : <span class="mono" id="apkDate">22/08/2025</span></span>
-          <span class="pill">Min Android : <span class="mono">8.0 (Oreo)</span></span>
+        <h2 class="section-title"><i class="fas fa-shield-alt"></i> Vérifier l’intégrité</h2>
+        <div id="integrity-check">
+          <p class="muted">Vérification automatique de l’empreinte du fichier téléchargé :</p>
+          <button class="btn primary" id="verify-btn"><i class="fas fa-check"></i> Vérifier maintenant</button>
+          <p class="mono" id="checksumBox">SHA-256 : <span id="checksumValue">db6206f2488c54b3beddcf6838b4caafee427996197a8cb8f8da4299123af0b8</span> <button class="copy" id="copyChecksum"><i class="fas fa-copy"></i> Copier</button></p>
+          <p id="hash-result"></p>
         </div>
-
-        <div class="actions">
-          <a class="btn primary" id="downloadBtn" href="WalletWise.apk" download>
-            ⬇️ Télécharger l’APK
-          </a>
-          <a class="btn ghost" id="mirrorBtn" href="WalletWise.apk" target="_blank" rel="noopener">🔁 Miroir</a>
-          <button class="btn ghost" id="howBtn" type="button">📱 Comment installer ?</button>
-        </div>
-
-        <div class="footnote">Astuce : scannez le QR code à droite pour télécharger directement sur votre téléphone.</div>
+        <p class="footnote">Sous Windows : <code>CertUtil -hashfile WalletWise.apk SHA256</code><br>macOS/Linux : <code>shasum -a 256 WalletWise.apk</code></p>
       </section>
 
       <aside class="card">
-        <h2 class="section-title">QR code (téléchargement direct)</h2>
-        <div class="qr-wrap">
-          <img id="qr" alt="QR code de téléchargement" src="" loading="lazy">
-        </div>
-
-        <h3 class="section-title" style="margin-top:18px;">Vérifier l’intégrité</h3>
-        <p class="muted">Comparez l’empreinte du fichier téléchargé avec celle fournie :</p>
-        <p class="mono" id="checksumBox">SHA-256 : <span id="checksumValue">xxxxxxxx… remplacez par votre empreinte</span> <button class="copy" id="copyChecksum">Copier</button></p>
-        <p class="footnote">Sous Windows : <code>CertUtil -hashfile WalletWise.apk SHA256</code><br>macOS/Linux : <code>shasum -a 256 WalletWise.apk</code></p>
+        <h2 class="section-title"><i class="fas fa-qrcode"></i> QR code (téléchargement direct)</h2>
+        <div class="qr-wrap" id="qrcode"></div>
       </aside>
     </div>
 
-    <section class="card" style="margin-top:16px;">
-      <h2 class="section-title">Notes de version</h2>
+    <section class="card" style="margin-top:1rem;">
+      <h1 class="title"><i class="fas fa-box"></i> Télécharger WalletWise</h1>
+      <p class="muted">Installez la dernière version de l’application Android en toute sécurité depuis cette page.</p>
+
+      <div class="app-meta">
+        <span class="pill" id="version-pill">Version <strong class="mono" id="apkVersion">1.0.0</strong></span>
+        <span class="pill">Taille : <span class="mono" id="apkSize">Chargement...</span></span>
+        <span class="pill">Mise à jour : <span class="mono" id="apkDate">22/08/2025</span></span>
+        <span class="pill">Min Android : <span class="mono">8.0 (Oreo)</span></span>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" id="downloadBtn" href="https://nitheoneste.github.io/WalletWiseAPK/WalletWise.apk" download>
+          <i class="fas fa-download"></i> Télécharger l’APK
+        </a>
+        <a class="btn ghost" id="mirrorBtn" href="https://nitheoneste.github.io/WalletWiseAPK/WalletWise.apk" target="_blank" rel="noopener"><i class="fas fa-sync"></i> Miroir</a>
+        <!--<button class="btn ghost" id="howBtn" type="button"><i class="fas fa-mobile-alt"></i> Comment installer ?</button>-->
+      </div>
+
+      <div class="footnote">Astuce : scannez le QR code à droite pour télécharger directement sur votre téléphone.</div>
+    </section>
+
+    <section class="card" style="margin-top:1rem;">
+      <h2 class="section-title"><i class="fas fa-sticky-note"></i> Notes de version</h2>
       <ul class="list">
         <li>✅ Améliorations de performance et corrections de bugs.</li>
         <li>✨ Nouvelle interface plus fluide pour le tableau de bord.</li>
@@ -154,59 +163,104 @@
       </ul>
     </section>
 
-    <section class="card" style="margin-top:16px;">
-      <h2 class="section-title">Guide d’installation rapide</h2>
+    <section class="card" style="margin-top:1rem;">
+      <h2 class="section-title"><i class="fas fa-book"></i> Guide d’installation rapide</h2>
       <ol class="list">
         <li>Téléchargez le fichier <span class="mono">WalletWise.apk</span> via le bouton ci-dessus.</li>
         <li>Sur votre téléphone, ouvrez le fichier téléchargé.</li>
-        <li>Si demandé, autorisez l’installation depuis « sources inconnues » pour votre navigateur ou gestionnaire de fichiers.</li>
+        <li>Si demandé, autorisez l’installation depuis « sources inconnues » pour votre navigateur ou gestionnaire de fichiers.</li>
         <li>Suivez les étapes à l’écran pour terminer l’installation.</li>
       </ol>
     </section>
 
     <footer>
-      © <span id="year"></span> Votre Société. Tous droits réservés.
+      © <span id="year"></span> WalletWise. Tous droits réservés.
     </footer>
   </div>
 
+  <!-- Librairie QRCode.js et SHA-256 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
-    const APK_URL = 'WalletWise.apk';
-    const META = {
-      version: '1.0.0',
-      size: '24.6 MB',
-      date: '22/08/2025',
-      checksum: 'COLLEZ-ICI-VOTRE-SHA256'
-    };
+    const APK_URL = "https://nitheoneste.github.io/WalletWiseAPK/WalletWise.apk";
+    new QRCode(document.getElementById("qrcode"), { text: APK_URL, width: 200, height: 200, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 
-    const $ = (id) => document.getElementById(id);
-    $('apkVersion').textContent = META.version;
-    $('apkSize').textContent = META.size;
-    $('apkDate').textContent = META.date;
+    const META = { version: '1.0.0', date: '22/08/2025', checksum: 'db6206f2488c54b3beddcf6838b4caafee427996197a8cb8f8da4299123af0b8' };
+    document.getElementById('apkVersion').textContent = META.version;
+    document.getElementById('apkDate').textContent = META.date;
+    document.getElementById('checksumValue').textContent = META.checksum;
 
-    const qr = $('qr');
-    const qrSize = 280;
-    const encoded = encodeURIComponent(APK_URL);
-    qr.src = `https://chart.googleapis.com/chart?cht=qr&chs=${qrSize}x${qrSize}&chl=${encoded}`;
-
-    if (META.checksum && META.checksum.length > 10) {
-      $('checksumValue').textContent = META.checksum;
+    // Fonction pour formater la taille en MB
+    function formatFileSize(bytes) {
+      const sizeInMB = (bytes / (1024 * 1024)).toFixed(1);
+      return `${sizeInMB} MB`;
     }
-    $('copyChecksum').addEventListener('click', async () => {
+
+    // Récupérer dynamiquement la taille du fichier
+    async function fetchFileSize() {
       try {
-        const text = $('checksumValue').textContent.trim();
-        await navigator.clipboard.writeText(text);
-        const btn = $('copyChecksum');
-        const old = btn.textContent;
-        btn.textContent = 'Copié !';
-        setTimeout(() => btn.textContent = old, 1200);
-      } catch (e) { alert('Impossible de copier automatiquement. Copiez manuellement.'); }
+        const response = await fetch(APK_URL, { method: 'HEAD' });
+        if (!response.ok) throw new Error('Impossible de récupérer les métadonnées du fichier.');
+        const contentLength = response.headers.get('Content-Length');
+        if (contentLength) {
+          const size = parseInt(contentLength, 10);
+          document.getElementById('apkSize').textContent = formatFileSize(size);
+        } else {
+          // Fallback : télécharger le fichier pour calculer la taille
+          const fullResponse = await fetch(APK_URL);
+          const arrayBuffer = await fullResponse.arrayBuffer();
+          document.getElementById('apkSize').textContent = formatFileSize(arrayBuffer.byteLength);
+        }
+      } catch (error) {
+        document.getElementById('apkSize').textContent = 'Erreur de chargement';
+        console.error('Erreur lors de la récupération de la taille :', error);
+      }
+    }
+
+    // Appeler la fonction au chargement de la page
+    fetchFileSize();
+
+    document.getElementById('copyChecksum').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(META.checksum); alert('SHA-256 copié !'); } 
+      catch(e){ alert('Impossible de copier automatiquement.'); }
     });
 
-    $('howBtn').addEventListener('click', () => {
-      alert(`Installation rapide:\n\n1) Téléchargez WalletWise.apk\n2) Ouvrez le fichier\n3) Autorisez les sources inconnues si demandé\n4) Terminez l’installation`);
+    document.getElementById('howBtn').addEventListener('click', () => {
+      alert('1) Téléchargez WalletWise.apk\n2) Ouvrez le fichier\n3) Autorisez les sources inconnues si demandé\n4) Terminez l’installation');
     });
 
-    $('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Automatic integrity check
+    const verifyBtn = document.getElementById('verify-btn');
+    const hashResult = document.getElementById('hash-result');
+
+    verifyBtn.addEventListener('click', () => {
+      hashResult.textContent = 'Vérification en cours...';
+      hashResult.className = 'loading';
+
+      fetch(APK_URL)
+        .then(response => {
+          if (!response.ok) throw new Error('Impossible de télécharger le fichier.');
+          return response.arrayBuffer();
+        })
+        .then(arrayBuffer => {
+          const hash = sha256(new Uint8Array(arrayBuffer));
+          const expectedHash = META.checksum;
+
+          if (hash === expectedHash) {
+            hashResult.textContent = 'Vérification réussie : Le fichier est intact.';
+            hashResult.className = 'success-msg';
+          } else {
+            hashResult.textContent = `Échec de la vérification : Hash calculé (${hash}) ne correspond pas à l'empreinte fournie (${expectedHash}).`;
+            hashResult.className = 'error-msg';
+          }
+        })
+        .catch(error => {
+          hashResult.textContent = `Erreur : ${error.message}. Vérifiez votre connexion ou l'URL du fichier.`;
+          hashResult.className = 'error-msg';
+        });
+    });
   </script>
 </body>
 </html>
